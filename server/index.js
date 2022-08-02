@@ -4,7 +4,9 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import chalk from "chalk";
-
+///////////////////////////////////////////////////////////////
+import authRoute from "./routes/auth.js";
+import hotelsRoute from "./routes/hotels.js";
 
 const app = express();
 dotenv.config();
@@ -13,7 +15,6 @@ dotenv.config();
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
-
 
 //Connected DB Mongo
 const connect = async () => {
@@ -24,6 +25,10 @@ const connect = async () => {
     throw error;
   }
 };
+
+//Route Crud
+app.use("/api/auth", authRoute);
+app.use("/api/hotels", hotelsRoute);
 
 app.listen(process.env.PORT, () => {
   connect();
