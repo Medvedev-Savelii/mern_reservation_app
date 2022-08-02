@@ -7,6 +7,8 @@ import chalk from "chalk";
 ///////////////////////////////////////////////////////////////
 import authRoute from "./routes/auth.js";
 import hotelsRoute from "./routes/hotels.js";
+import usersRoute from "./routes/users.js";
+import roomsRoute from "./routes/rooms.js";
 
 const app = express();
 dotenv.config();
@@ -28,7 +30,9 @@ const connect = async () => {
 
 //Route Crud
 app.use("/api/auth", authRoute);
+app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
+app.use("/api/rooms", roomsRoute);
 
 //middleware Error Message
 app.use((err, req, res, next) => {

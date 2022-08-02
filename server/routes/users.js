@@ -4,16 +4,18 @@ import {
   deleteUser,
   getUser,
   getUsers,
-} from "../controllers/hotel.js";
+} from "../controllers/user.js";
+import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
+
 const router = express.Router();
 
 //UPDATE
-router.put("/:id", updateUser);
+router.put("/:id", verifyUser, updateUser);
 //DELETE
-router.delete("/:id", deleteUser);
-//GET One Hotel
-router.get("/find/:id", getUser);
-//GET ALL HOTELS
-router.get("/", getUsers);
+router.delete("/:id", verifyUser, deleteUser);
+//GET One User
+router.get("/find/:id", verifyUser, getUser);
+//GET ALL Users
+router.get("/", verifyAdmin, getUsers);
 
 export default router;
